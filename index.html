@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Глубокое копирование</title>
+</head>
+
+<body>
+    <style>
+
+    </style>
+    <script>
+        'use strict'
+        
+        function deepCopy(obj) {
+                if (obj == null || typeof obj !== 'object') {
+                    return obj;
+                }
+
+                if (obj instanceof String) { return new String(obj); }
+                if (obj instanceof Number) { return new Number(obj); }
+                if (obj instanceof Boolean) { return new Boolean(obj); }
+               
+                var clone = {};
+                if (obj instanceof Array) {
+                    clone = new Array(obj.length);
+                }
+                for (var key in obj) {
+                    clone[key] = deepCopy(obj[key]);
+                }
+                return clone;
+            };
+                    
+        var h1={ a:5, b:{b1:6,b2:7}, c:[33,22], d:null, e:undefined, f:Number.NaN };
+        var h2=deepCopy(h1);
+
+        alert(`h2 копия h1={ a:5, b:{b1:6,b2:7}, c:[33,22], d:null, e:undefined, f:Number.NaN }
+h1===h2 должно быть false:  ${h1===h2} ;
+h1.a===h2.a должно быть true: ${h1.a===h2.a};
+h1.b===h2.b должно быть false:  ${h1.b===h2.b} ;
+h1.b.b1===h2.b.b1 должно быть true:  ${h1.b.b1===h2.b.b1};
+h1.c===h2.c должно быть false:  ${h1.c===h2.c};
+h1.c[0]===h2.c[0] должно быть true: ${h1.c[0]===h2.c[0]};
+h1.d===h2.d должно быть true: ${h1.d===h2.d};
+h1.e===h2.e должно быть true: ${h1.e===h2.e};
+isNaN(h2.f) должно быть true: ${isNaN(h2.f)};
+h2.c instanceof Array будет true: ${h2.c instanceof Array}
+        `);
+
+        var a1=[ 5, {b1:6,b2:7}, [33,22], null, undefined, Number.NaN];
+        var a2=deepCopy(a1);
+
+        alert(`a2 копия a1=[ 5, {b1:6,b2:7}, [33,22], null, undefined, Number.NaN]
+a1===a2 должно быть false:  ${a1===a2} ;
+typeof(a2)===typeof(a1) должно быть true: ${typeof(a2)===typeof(a1)};
+a1[0]===a2[0] должно быть true:  ${a1[0]===a2[0]} ;
+a1[1]===a2[1]  должно быть  false:  ${a1[1]===a2[1] };
+a1[1].b1===a2[1].b1 должно быть  true:  ${a1[1].b1===a2[1].b1};
+a1[2]===a2[2] должно быть false: ${a1[2]===a2[2]};
+a1[2][0]===a2[2][0] должно быть true: ${a1[2][0]===a2[2][0]};
+a1[3]===a2[3] должно быть true: ${a1[3]===a2[3]};
+a1[4]===a2[4] должно быть true: ${a1[4]===a2[4]};
+isNaN(a2[5]) должно быть true: ${isNaN(a2[5])};
+a2[2] instanceof Array будет true: ${a2[2] instanceof Array}
+        `);
+
+        var v1="sss";
+        var v2=deepCopy(v1);
+
+alert(`v2 копия v1="sss"
+typeof(v2)===typeof(v1) должно быть true: ${typeof(v2)===typeof(v1)};
+v1===v2 должно быть true:  ${v1===v2} 
+        `);
+
+        var z1=null;
+        var z2=deepCopy(z1);
+        alert(`z2 копия z1=null
+typeof(z2)===typeof(z1) должно быть true: ${typeof(z2)===typeof(z1)};
+z1===z2 должно быть true:  ${z1===z2} 
+        `);
+
+        var n1=Number.NaN;
+        var n2=deepCopy(n1);
+        alert(`n2 копия n1==Number.NaN;
+typeof(n2)===typeof(n1) должно быть true: ${typeof(n2)===typeof(n1)};
+isNaN(n2) должно быть true:  ${isNaN(n2)} 
+        `);
+
+
+
+
+
+
+
+
+       
+
+
+
+
+
+
+
+
+
+
+        
+          
+
+
+
+
+
+// isNaN(h2.f) будет true
+// h2.c instanceof Array будет true)
+
+    </script>
+
+</body>
+
+</html>
